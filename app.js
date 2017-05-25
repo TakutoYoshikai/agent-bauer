@@ -1,5 +1,5 @@
 let FB = require("fb");
-var SlackBot = require("slackbots");
+let SlackBot = require("slackbots");
 let fs = require("fs");
 let slackInfo;
 let bot;
@@ -43,7 +43,6 @@ function initSlack() {
 	});
 }
 
-
 function initFacebook() {
 	readFacebookToken();
 	FB.setAccessToken(fbToken);
@@ -67,9 +66,6 @@ function saveResult(){
 	});
 }
 
-
-
-
 function check(){
 	listToSearch.forEach(function(user){
 		let name = user.firstName + " " + user.lastName;
@@ -79,7 +75,7 @@ function check(){
 			type: "user"
 		}, function(res){
 			console.log(res);
-			var count = res.data.filter(function(u){
+			let count = res.data.filter(function(u){
 				if (user.firstName.toLowerCase() == u.first_name.toLowerCase() 
 					&& user.lastName.toLowerCase() == u.last_name.toLowerCase()){
 					return true;
@@ -98,7 +94,7 @@ function check(){
 
 function start() {
 	fs.readFile("data.json", "utf8", function(err, text){
-		var json = JSON.parse(text);
+		let json = JSON.parse(text);
 		sameNames = json;
 		setTimeout(check, 5000);
 		setTimeout(saveResult, 9000);
